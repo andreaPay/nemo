@@ -1,0 +1,6 @@
+DIR_INPUTS = "/scratch/lhashimoto/nemo_database/imaging_data"
+DIR_FREESURFER = "/scratch/lhashimoto/freesurfer"
+FREESURFER_STDOUT = DIR_FREESURFER + "/stdout"
+FREESURFER_OUTPUTS = DIR_FREESURFER + "/outputs"
+FREESURFER_SNAPSHOTS = DIR_FREESURFER + "/snapshots"
+FREESURFER_FSQC = DIR_FREESURFER + "/fsqc"
