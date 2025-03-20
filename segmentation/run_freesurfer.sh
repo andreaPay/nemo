@@ -1,9 +1,17 @@
 #!/bin/bash
-# Script pour executer FreeSurfer via Singularity avec gestion des logs
+###########################################################
+# Execute FreeSurfer segmentation with T1 and T2 using Singularity
+# Usage: ./run_freesurfer.sh <subject_id>
+###########################################################
 
-export SUBJECTS_DIR="/scratch/lhashimoto/nemo_database/imaging_data"
+# Set the path to config.py
+CONFIG_FILE="./config.py"
+# Read paths from config.py and export them as environment variables
+eval $(PYTHONPATH=$CONFIG_DIR python3 -c 'import config; config.print_paths()')
+
+export SUBJECTS_DIR=$DIR_INPUTS
 echo $SUBJECTS_DIR
-export FREESURFER_DIR="/scratch/lhashimoto/freesurfer"
+export FREESURFER_DIR=$DIR_FREESURFER
 echo $FREESURFER_DIR
 
 # Creer les repertoires si necessaire
