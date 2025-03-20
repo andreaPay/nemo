@@ -55,7 +55,7 @@ def normalize_aseg_volumes(subjects, subjects_dir, columns_to_exclude, columns_t
         df_aseg_norm = df_aseg_norm.drop(columns=columns_to_skip)
         df_aseg_norm = df_aseg_norm.div(df_aseg['aseg.EstimatedTotalIntraCranialVol'], axis=0)
         df_aseg_norm.to_csv(os.path.join(subjects_dir, subject, "stats", "aseg_stats_norm.csv"), index=False)
-    return df_aseg_norm, df_etiv
+    return df_etiv
 
 
 def calculate_outliers(subjects, subjects_dir, outlier_outdir, outlier_params):
@@ -156,23 +156,24 @@ if __name__ == "__main__":
                           'aseg.rhSurfaceHoles', 'aseg.SurfaceHoles']
     columns_to_skip = ['aseg.EstimatedTotalIntraCranialVol']
 
-    # Charger le fichier généré par la toolbox FSQC
+    # Load FSQC results
     df_fsqc = load_fsqc_results(fsqc_results_path)
-    # Charger le fichier check_log.csv
+    # Load log check results
     df_check_log = load_check_log(check_log_path)
-    # Fusionner les deux dataframes
+    # Merge dataframes
     df = merge_dataframes(df_fsqc, df_check_log)
-    # Convertir les angles de radians en degrés
+    # Convert radians to degrees
     df = convert_radians_to_degrees(df)
-    # Normaliser les volumes de ASEG par ETIV et calculer les outliers
+    # Normalize ASEG volumes by ETIV
     subjects = df['subject'].tolist()
-    df_aseg_norm, df_etiv = normalize_aseg_volumes(subjects, subjects_dir, columns_to_exclude, columns_to_skip)
+    df_etiv = normalize_aseg_volumes(subjects, subjects_dir, columns_to_exclude, columns_to_skip)
+    # Calculate outliers and save new group aparc/aseg statistics
     df_group_stats, df_outliers = calculate_outliers(subjects, subjects_dir, outliers_dir, outlier_params)
     df_group_stats.reset_index(inplace=True)
     df_group_stats.to_csv(group_statistics_path, index=False)
-    # Fusionner en un unique dataframe
+    # Merge QC dataframes
     df = merge_dataframes(df, df_etiv)
     df = merge_dataframes(df, df_outliers)
-    # df.to_csv(fsqc_complete_path, index=False)
+    df.to_csv(fsqc_complete_path, index=False)
     print(f"Fichier {fsqc_complete_path} généré avec succès.")
 

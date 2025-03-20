@@ -6,14 +6,13 @@ import re
 import csv
 import glob
 import numpy as np
-from config import DIR_FREESURFER, FREESURFER_OUTPUTS
+from config import FREESURFER_FSQC, FREESURFER_OUTPUTS
 
 
 def extract_info_from_log(log_file):
     """
-    Extrait le statut de fin de calcul du fichier log et d'autres informations
-    :param stdout_file:
-    :return:
+    Uses regex to extract information from the log file such as the runtime, the number of Euler number before and after topological correction
+
     """
     finished_pattern = re.compile(r"finished without error")
     runtime_pattern = re.compile(r"#@#%# recon-all-run-time-hours (\d+\.\d+)")
@@ -22,24 +21,24 @@ def extract_info_from_log(log_file):
     topo_after_pattern_lh = re.compile(r"#@# Fix Topology lh.*?after topology correction, eno=([^\(]+)", re.DOTALL)
     topo_after_pattern_rh = re.compile(r"#@# Fix Topology rh.*?after topology correction, eno=([^\(]+)", re.DOTALL)
 
-    # Lire le fichier
+    # Read log file
     with open(log_file, 'r') as file:
         log_content = file.read()
 
-    # Vérifier si "finished without error" est présent
+    # Check if "finished without error" is present
     finished_status = "Success" if finished_pattern.search(log_content) else "Error"
 
-    # Extraire le temps de calcul
+    # Extract runtime
     runtime_match = runtime_pattern.search(log_content)
     runtime = runtime_match.group(1) if runtime_match else "Not found"
 
-    # Extraire le nombre d'Euler avant correction topologique
+    # Extract Euler number before topological correction
     topo_match = topo_before_pattern_lh.search(log_content)
     eno_before_lh = topo_match.group(1) if topo_match else np.nan
     topo_match = topo_before_pattern_rh.search(log_content)
     eno_before_rh = topo_match.group(1) if topo_match else np.nan
 
-    # Extraire le nombre d'Euler après correction topologique
+    # Extract Euler number after topological correction
     topo_match = topo_after_pattern_lh.search(log_content)
     eno_after_lh = topo_match.group(1) if topo_match else np.nan
     topo_match = topo_after_pattern_rh.search(log_content)
@@ -50,34 +49,30 @@ def extract_info_from_log(log_file):
 
 def count_dirs_in_directory(directory):
     """
-    Compte le nombre de répertoires dans un répertoire donné (non récursivement)
-    :param directory:
-    :return: int
+    Count the number of directories in a given directory (non-recursively)
+
     """
     return sum([1 for item in os.listdir(directory) if os.path.isdir(os.path.join(directory, item))])
 
 
 def count_files_in_directory(directory):
     """
-    Compte le nombre de fichiers dans un répertoire donné
-    :param directory:
-    :return: int
+    Count the number of files in a given directory
+
     """
     return sum([len(files) for _, _, files in os.walk(directory)])
 
 
 def check_log_and_generate_csv(subj_list, output_csv):
     """
-    Parcours les sujets et enregistre les informations dans un fichier CSV
-    :param subj_list:
-    :param output_csv:
-    :return:
+    Scan recon-all log files for each subject and save information in a CSV file
+
     """
 
     with open(output_csv, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
 
-        # Écrire les en-têtes du fichier CSV
+        # Set header
         writer.writerow(["Subject",
                          "Number of folders generated",
                          "Number of files generated",
@@ -88,7 +83,7 @@ def check_log_and_generate_csv(subj_list, output_csv):
                          "Euler number before topo correction LH",
                          "Euler number after topo correction RH"])
 
-        # Parcourir tous les fichiers log
+        # Scan log files for each subject
         for subj in subj_list:
             log_file = os.path.join(FREESURFER_OUTPUTS, subj, "scripts", "recon-all.log")
             print(log_file)
@@ -96,20 +91,21 @@ def check_log_and_generate_csv(subj_list, output_csv):
                 info = extract_info_from_log(log_file)
                 dir_count = count_dirs_in_directory(os.path.join(FREESURFER_OUTPUTS, subj))
                 file_count = count_files_in_directory(os.path.join(FREESURFER_OUTPUTS, subj))
-                # Écrire les informations dans le fichier CSV
+                # Write information to CSV
                 writer.writerow([subj, dir_count, file_count] + list(info))
             else:
                 print(f"Le fichier log pour le sujet {subj} n'existe pas.")
 
 
 if __name__ == "__main__":
-    # Récupérer la liste des sujets dans le dossier outputs
+    # Get list of subjects with available freesurfer outputs
     subj_list = glob.glob(os.path.join(FREESURFER_OUTPUTS, "sub-*"))
     subj_list = [os.path.basename(x) for x in subj_list]
 
-    output_csv = os.path.join(DIR_FREESURFER, "check_log.csv")  # Le fichier CSV de sortie
+    # Set path to the output CSV file
+    output_csv = os.path.join(FREESURFER_FSQC, "check_log.csv")  # Le fichier CSV de sortie
 
-    # Traitement des fichiers et génération du CSV
+    # Extract information from log files and save to CSV
     check_log_and_generate_csv(subj_list, output_csv)
 
-    print(f"Les informations ont été enregistrées dans {output_csv}.")
+    print(f"Logs information have been saved in {output_csv}.")
