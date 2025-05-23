@@ -13,7 +13,7 @@ First steps on MESOCENTRE:
 1) module load userspace/all
 2) module load python3/3.12.0
 
-To run freesurfer segmentation, use the following commands from the nemo root directory:
+To run freesurfer segmentation, use the following commands from the nemo/segmentation root directory:
 - On all new cases : sh run_freesurfer_newcases.sh
 - On a single case (batch mode) : sbatch ./run_freesurfer.slurm SUBJECT
 - On a single case (interactive mode) : sh ./run_freesurfer.sh SUBJECT
