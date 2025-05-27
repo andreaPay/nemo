@@ -15,4 +15,4 @@ module load userspace/all
 # déplacement sur le répertoire de travail
 cd /scratch/$SLURM_JOB_USER/
 
-sh ./segmentation/run_freesurfer.sh $1
+sh ./run_freesurfer.sh $1
