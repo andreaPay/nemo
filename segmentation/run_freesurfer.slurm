@@ -6,7 +6,7 @@
 #SBATCH -o ./%x_%j.out
 #SBATCH -e ./%x_%j.err
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --mail-user=lucile.hashimoto@adalab.fr
+#SBATCH --mail-user=andrea.paysserand@univ-amu.fr
 
 # chargement des modules
 module purge
