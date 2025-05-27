@@ -19,7 +19,7 @@ do
         echo "Skipping subject already processed: $s"
     else
 		echo "Processing subject: $s"
-		sbatch ./segmentation/run_freesurfer.slurm $s
+		sbatch ./run_freesurfer.slurm $s
 		echo ""
 		echo ""
 	fi
