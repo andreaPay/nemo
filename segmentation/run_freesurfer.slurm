@@ -13,6 +13,6 @@ module purge
 module load userspace/all
 
 # déplacement sur le répertoire de travail
-cd /scratch/$SLURM_JOB_USER/
+cd /scratch/$SLURM_JOB_USER/code/nemo
 
 sh ./segmentation/run_freesurfer.sh $1
