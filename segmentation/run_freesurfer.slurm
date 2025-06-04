@@ -16,4 +16,4 @@ module load python3/3.12.0
 # déplacement sur le répertoire de travail
 cd /scratch/$SLURM_JOB_USER/
 
-sh ./nemo/segmentation/run_freesurfer.sh $1
+sh ./segmentation/run_freesurfer.sh $1
