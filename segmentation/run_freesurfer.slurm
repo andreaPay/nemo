@@ -11,7 +11,6 @@
 # chargement des modules
 module purge
 module load userspace/all
-module load python3/3.12.0
 
 # déplacement sur le répertoire de travail
 cd /scratch/$SLURM_JOB_USER/
