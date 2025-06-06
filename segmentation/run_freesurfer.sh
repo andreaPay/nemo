@@ -24,4 +24,4 @@ if [ -d "$FREESURFER_DIR/outputs/$1" ]; then
 fi
 
 # Executer le conteneur avec Singularity
-singularity exec -B $SUBJECTS_DIR:/mnt -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && recon-all -all -s $1 -i /mnt/sub-$1/ses-01/anat/$1_ses-01_T1w.nii.gz -T2 /mnt/sub-$1/ses-01/anat/$1_ses-01_T2w.nii.gz -T2pial -sd /output"
+singularity exec -B $SUBJECTS_DIR:/mnt -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && recon-all -all -s $1 -i /mnt/sub-$1/ses-01/anat/sub-$1_ses-01_T1w.nii.gz -T2 /mnt/sub-$1/ses-01/anat/sub-$1_ses-01_T2w.nii.gz -T2pial -sd /output"
