@@ -3,8 +3,8 @@
 #SBATCH -p skylake
 #SBATCH -n 1
 #SBATCH -t 9:00:00
-#SBATCH -o ./%x_%j.out
-#SBATCH -e ./%x_%j.err
+#SBATCH -o /scratch/apaysserand/freesurfer/sdtout/%x_%j.out
+#SBATCH -e /scratch/apaysserand/freesurfer/sdtout/%x_%j.err
 #SBATCH --mail-type=BEGIN,END
 #SBATCH --mail-user=andrea.paysserand@univ-amu.fr
 
