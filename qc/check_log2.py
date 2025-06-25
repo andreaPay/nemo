@@ -1,4 +1,4 @@
-# Auteur: Lucile Hashimoto (Adalab)
+# Auteur: Lucile Hashimoto (Adalab) modified by Andréa Paysserand (INT)
 # Date: 2025
 import os
 import glob
