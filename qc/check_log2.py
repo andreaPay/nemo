@@ -5,7 +5,7 @@ import glob
 import csv
 import re
 import numpy as np
-from config import FREESURFER_FSQC, FREESURFER_OUTPUTS
+from config2 import FREESURFER_FSQC, FREESURFER_OUTPUTS
 
 def extract_info_from_log(log_file):
     """
