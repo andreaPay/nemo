@@ -17,7 +17,6 @@ from config import FREESURFER_OUTPUTS, FREESURFER_FSQC
 #               # hippocampus_label="T1.v21",
 #               shape=False,  # Requires to run freesurfer commands which is too complicated via singularity
 #               outlier=True,
-#               skip_existing=True
 # )
 
 ## Run FSQC on all subjects
@@ -33,7 +32,6 @@ fsqc.run_fsqc(subjects_dir=FREESURFER_OUTPUTS,
               # hippocampus_label="T1.v21",
               shape=False,  # Requires to run freesurfer commands which is too complicated via singularity
               outlier=True,
-              skip_existing=True
               )
 
 # Test FSQC uniquement sur la segmentation de l'hippo-amygdale
