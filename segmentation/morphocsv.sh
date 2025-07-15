@@ -1,3 +1,4 @@
+#Created by Andréa Paysserand 15/07/2025
 #!/bin/bash
 ###########################################################
 # Execute any FreeSurfer command using Singularity
