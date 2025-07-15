@@ -9,7 +9,7 @@ CONFIG_FILE="./config.py"
 # Read paths from config.py and export them as environment variables
 eval $(PYTHONPATH=$CONFIG_DIR python3 -c 'import config; config.print_paths()')
 
-export SUBJECTS_DIR=$DIR_INPUTS
+export SUBJECTS_DIR=$FREESURFER_OUTPUTS 
 echo $SUBJECTS_DIR
 export FREESURFER_DIR=$DIR_FREESURFER
 echo $FREESURFER_DIR
