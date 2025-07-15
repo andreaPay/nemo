@@ -19,42 +19,42 @@ echo $subjects
 
 ## Extract aseg volumes (subcortical structures)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
-  --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
+  --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
   asegstats2table --subjects $subjects --tablefile /output/aseg_volumes.csv"
 
 ## Extract cortical thickness (left hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
-  --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
+  --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
   aparcstats2table --subjects $subjects --hemi lh --meas thickness --tablefile /output/lh_thickness.csv"
 
 ## Extract cortical thickness (right hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
-  --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
+  --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
   aparcstats2table --subjects $subjects --hemi rh --meas thickness --tablefile /output/rh_thickness.csv"
 
 ## Extract cortical surface area (left hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
-  --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
+  --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
   aparcstats2table --subjects $subjects --hemi lh --meas area --tablefile /output/lh_area.csv"
 
 ## Extract cortical surface area (right hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
-  --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
+  --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
   aparcstats2table --subjects $subjects --hemi rh --meas area --tablefile /output/rh_area.csv"
 
 ## Extract cortical curvature (left hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
-  --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
+  --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
   aparcstats2table --subjects $subjects --hemi lh --meas curv --tablefile /output/lh_curv.csv"
 
 ## Extract cortical curvature (right hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
-  --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
+  --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
   aparcstats2table --subjects $subjects --hemi rh --meas curv --tablefile /output/rh_curv.csv"
