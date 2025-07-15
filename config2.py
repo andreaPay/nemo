@@ -3,9 +3,9 @@ DIR_FREESURFER = [
     "/scratch/apaysserand/freesurfer",
     "/scratch/lhashimoto/freesurfer"
 ]
-FREESURFER_STDOUT = [d + "/stdout" for d in DIR_FREESURFER]
-FREESURFER_OUTPUTS = [d + "/outputs" for d in DIR_FREESURFER]
-FREESURFER_FSQC = [d + "/fsqc" for d in DIR_FREESURFER]
+FREESURFER_STDOUT = [d + "/stdout" for d in /scratch/apaysserand/freesurfer]
+FREESURFER_OUTPUTS = [d + "/outputs" for d in /scratch/apaysserand/freesurfer]
+FREESURFER_FSQC = [d + "/fsqc" for d in /scratch/apaysserand/freesurfer]
 
 def print_paths():
     """
