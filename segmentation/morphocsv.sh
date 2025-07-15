@@ -15,6 +15,7 @@ export FREESURFER_DIR=$DIR_FREESURFER
 echo $FREESURFER_DIR
 
 subjects=$(ls $FREESURFER_DIR/outputs)
+echo $subjects
 
 ## Extract aseg volumes (subcortical structures)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
