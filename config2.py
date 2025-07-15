@@ -1,7 +1,7 @@
 DIR_INPUTS = "/scratch/lhashimoto/nemo_database/imaging_data"
 DIR_FREESURFER = [
     "/scratch/apaysserand/freesurfer",
-    "/another/path/to/freesurfer"
+    "/scratch/lhashimoto/freesurfer"
 ]
 FREESURFER_STDOUT = [d + "/stdout" for d in DIR_FREESURFER]
 FREESURFER_OUTPUTS = [d + "/outputs" for d in DIR_FREESURFER]
