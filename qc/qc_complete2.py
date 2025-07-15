@@ -2,7 +2,7 @@ import csv
 import os
 import pandas as pd
 from fsqc.outlierDetection import readAsegStats, readAparcStats
-from outlierDetection import outlierDetection_normalized, outlierTable
+from outlierDetection2 import outlierDetection_normalized, outlierTable
 from config2 import FREESURFER_FSQC, FREESURFER_OUTPUTS, DIR_FREESURFER
 
 
