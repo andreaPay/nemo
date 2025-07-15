@@ -14,7 +14,7 @@ echo $SUBJECTS_DIR
 export FREESURFER_DIR=$DIR_FREESURFER
 echo $FREESURFER_DIR
 
-subjects=$(ls $FREESURFER_DIR/outputs)
+subjects=$(ls $FREESURFER_DIR/outputs | grep -v fsaverage)
 echo $subjects
 
 ## Extract aseg volumes (subcortical structures)
