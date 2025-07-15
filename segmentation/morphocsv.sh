@@ -51,10 +51,10 @@ singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
   --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
-  aparcstats2table --subjects $subjects --hemi lh --meas curv --tablefile /output/lh_curv.csv"
+  aparcstats2table --subjects $subjects --hemi lh --meas meancurv --tablefile /output/lh_curv.csv"
 
 ## Extract cortical curvature (right hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
   --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
-  aparcstats2table --subjects $subjects --hemi rh --meas curv --tablefile /output/rh_curv.csv"
+  aparcstats2table --subjects $subjects --hemi rh --meas meancurv --tablefile /output/rh_curv.csv"
