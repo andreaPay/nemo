@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from fsqc.outlierDetection import readAsegStats, readAparcStats
 from outlierDetection import outlierDetection_normalized, outlierTable
-from config2 import FREESURFER_FSQC, FREESURFER_OUTPUTS, DIR_FREESURFER
+from config import FREESURFER_FSQC, FREESURFER_OUTPUTS, DIR_FREESURFER
 
 
 def load_fsqc_results(fsqc_results_path):
