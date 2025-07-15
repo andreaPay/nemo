@@ -20,7 +20,7 @@ subjects=$(ls $FREESURFER_DIR/outputs)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
   --env FS_LICENSE=/license/license.txt /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
-  asegstats2table --subjects $subjects --statsfile /output/$1/stats/aseg.stats --tablefile /output/aseg_volumes.csv"
+  asegstats2table --subjects $subjects --tablefile /output/aseg_volumes.csv"
 
 ## Extract cortical thickness (left hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
