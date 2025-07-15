@@ -9,12 +9,12 @@ CONFIG_FILE="./config.py"
 # Read paths from config.py and export them as environment variables
 eval $(PYTHONPATH=$CONFIG_DIR python3 -c 'import config; config.print_paths()')
 
-export SUBJECTS_DIR=$DIR_INPUTS
+export SUBJECTS_DIR=$FREESURFER_OUTPUTS 
 echo $SUBJECTS_DIR
 export FREESURFER_DIR=$DIR_FREESURFER
 echo $FREESURFER_DIR
 
-subjects=$(ls $FREESURFER_DIR/outputs | grep -v fsaverage)
+subjects=$(ls $FREESURFER_DIR/outputs | grep -v fsaverage | tr '\n' ' ')
 echo $subjects
 
 ## Extract aseg volumes (subcortical structures)
@@ -51,10 +51,10 @@ singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
   --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
-  aparcstats2table --subjects $subjects --hemi lh --meas curv --tablefile /output/lh_curv.csv"
+  aparcstats2table --subjects $subjects --hemi lh --meas meancurv --tablefile /output/lh_curv.csv"
 
 ## Extract cortical curvature (right hemisphere)
 singularity exec -B $FREESURFER_DIR/outputs:/output -B $FREESURFER_DIR/license:/license \
   --env FS_LICENSE=/license/license.txt --env SUBJECTS_DIR=/output /scratch/lhashimoto/freesurfer-7.4.1.sif \
   bash -c "source /usr/local/freesurfer/SetUpFreeSurfer.sh && \
-  aparcstats2table --subjects $subjects --hemi rh --meas curv --tablefile /output/rh_curv.csv"
+  aparcstats2table --subjects $subjects --hemi rh --meas meancurv --tablefile /output/rh_curv.csv"
