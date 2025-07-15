@@ -5,7 +5,6 @@ channels:
 dependencies:
   - python=3.11.11
   - pip:
-      - jupyterlab
       - matplotlib==3.10.0
       - nibabel==5.3.2
       - numpy==2.2.1
