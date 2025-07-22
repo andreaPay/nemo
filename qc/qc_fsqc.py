@@ -31,7 +31,7 @@ fsqc.run_fsqc(
     hippocampus=False,
     shape=False,
     outlier=True,
-    skip_existing=True
+    skip_existing=False
 )
 
 ## Run FSQC on all subjects (group_only = true might skip individual processing and do the group level only ?)
