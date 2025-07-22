@@ -6,5 +6,6 @@
 #SBATCH --mail-type=BEGIN,END
 #SBATCH --mail-user=andrea.paysserand@univ-amu.fr
 
+source /home/apaysserand/anaconda3/etc/profile.d/conda.sh
 conda activate nemo
 python3 /scratch/apaysserand/code/nemo/qc/qc_fsqc.py
