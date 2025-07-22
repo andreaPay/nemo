@@ -7,4 +7,4 @@
 #SBATCH --mail-user=andrea.paysserand@univ-amu.fr
 
 conda activate nemo
-python /scratch/apaysserand/code/nemo/qc/qc_fsqc.py
+python3 /scratch/apaysserand/code/nemo/qc/qc_fsqc.py
