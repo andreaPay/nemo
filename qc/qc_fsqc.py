@@ -19,20 +19,35 @@ from config import FREESURFER_OUTPUTS, FREESURFER_FSQC
 #               outlier=True,
 # )
 
-## Run FSQC on all subjects
-fsqc.run_fsqc(subjects_dir=FREESURFER_OUTPUTS,
-              output_dir=FREESURFER_FSQC,
-              group_only=True,
-              screenshots_html=True,
-              surfaces_html=True,
-              skullstrip_html=True,
-              fornix_html=True,
-              hypothalamus_html=False,
-              hippocampus_html=False,
-              # hippocampus_label="T1.v21",
-              shape=False,  # Requires to run freesurfer commands which is too complicated via singularity
-              outlier=True,
-              )
+## Run FSQC on all single subjects (one by one, no skipping individual processing)
+fsqc.run_fsqc(
+    subjects_dir=FREESURFER_OUTPUTS,
+    output_dir=FREESURFER_FSQC,
+    screenshots=True,
+    surfaces=True,
+    skullstrip=True,
+    fornix=True,
+    hypothalamus=False,
+    hippocampus=False,
+    shape=False,
+    outlier=True,
+    skip_existing=True
+)
+
+## Run FSQC on all subjects (group_only = true might skip individual processing and do the group level only ?)
+#fsqc.run_fsqc(subjects_dir=FREESURFER_OUTPUTS,
+#              output_dir=FREESURFER_FSQC,
+#              group_only=True,
+#              screenshots_html=True,
+#              surfaces_html=True,
+#              skullstrip_html=True,
+#              fornix_html=True,
+#              hypothalamus_html=False,
+#              hippocampus_html=False,
+#              # hippocampus_label="T1.v21",
+#              shape=False,  # Requires to run freesurfer commands which is too complicated via singularity
+#              outlier=True,
+#              )
 
 # Test FSQC uniquement sur la segmentation de l'hippo-amygdale
 # fsqc.run_fsqc(subjects_dir=FREESURFER_OUTPUTS,
