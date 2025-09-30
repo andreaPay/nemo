@@ -60,6 +60,7 @@ A new aseg_stats_norm.csv is saved for each subject.
 The number of outliers is updated and all QC statistics are merged and saved in the fsqc-results-complete.csv file.
 
 WARNING : .pial.T1 and .pial.T2 are symboloc links and may disapear when data is transfered from a user to another. In this case, recreate the symbolic links 
+
 for subj in *; do
   if [ -d "$subj/surf" ]; then
     [ -e "$subj/surf/rh.white.H" ] || ln -s rh.white.preaparc.H "$subj/surf/rh.white.H"
@@ -68,6 +69,7 @@ for subj in *; do
     [ -e "$subj/surf/rh.fsaverage.sphere.reg" ] || ln -s rh.sphere.reg "$subj/surf/rh.fsaverage.sphere.reg"
   fi
 done
+
 
 for subj in *; do
   if [ -d "$subj/surf" ]; then
