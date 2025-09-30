@@ -18,7 +18,10 @@ To run freesurfer segmentation, use the following commands from the nemo/segment
 - On a single case (batch mode) : sbatch ./run_freesurfer.slurm SUBJECT
 - On a single case (interactive mode) : sh ./run_freesurfer.sh SUBJECT
 
+. is not necessary if you are in NEMO directory
+  
 To run a specific freesurfer command on interactive mode, adapt the script run_freesurfer_usefull_commands.sh
+then type sh segmentation/run_freesurfer_loop.sh
 
 To run any command (interactive or batch) on a group of subjects, adapt the script run_loop.sh
 
@@ -55,6 +58,26 @@ This script will generate a report for each subject and a csv file for group sta
 This script will recompute the group statistics of aparc and aseg segmentations after normalization of volumes by ETIV.
 A new aseg_stats_norm.csv is saved for each subject.
 The number of outliers is updated and all QC statistics are merged and saved in the fsqc-results-complete.csv file.
+
+WARNING : .pial.T1 and .pial.T2 are symboloc links and may disapear when data is transfered from a user to another. In this case, recreate the symbolic links 
+for subj in *; do
+  if [ -d "$subj/surf" ]; then
+    [ -e "$subj/surf/rh.white.H" ] || ln -s rh.white.preaparc.H "$subj/surf/rh.white.H"
+    [ -e "$subj/surf/rh.white.K" ] || ln -s rh.white.preaparc.K "$subj/surf/rh.white.K"
+    [ -e "$subj/surf/rh.pial" ] || ln -s rh.pial.T2 "$subj/surf/rh.pial"
+    [ -e "$subj/surf/rh.fsaverage.sphere.reg" ] || ln -s rh.sphere.reg "$subj/surf/rh.fsaverage.sphere.reg"
+  fi
+done
+
+for subj in *; do
+  if [ -d "$subj/surf" ]; then
+    [ -e "$subj/surf/lh.white.H" ] || ln -s lh.white.preaparc.H "$subj/surf/lh.white.H"
+    [ -e "$subj/surf/lh.white.K" ] || ln -s lh.white.preaparc.K "$subj/surf/lh.white.K"
+    [ -e "$subj/surf/lh.pial" ] || ln -s lh.pial.T2 "$subj/surf/lh.pial"
+    [ -e "$subj/surf/lh.fsaverage.sphere.reg" ] || ln -s lh.sphere.reg "$subj/surf/lh.fsaverage.sphere.reg"
+  fi
+done
+
 
 ## Statistics
 
