@@ -1,3 +1,5 @@
+#Created for being able to take two directories as DIR_FREESURFER but too complicated to use on mesocentre
+
 DIR_INPUTS = "/scratch/lhashimoto/nemo_database/imaging_data"
 DIR_FREESURFER = [
     "/scratch/apaysserand/freesurfer",
