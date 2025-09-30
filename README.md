@@ -53,6 +53,11 @@ Three configurations are available. Choose the one you want to use by uncommenti
 
 This script will generate a report for each subject and a csv file for group statistics name 'fsqc-results.csv'.
 
+If QC has already been performed on one or several subjects, you can run FSQC on the remaining subjects by providing a subject list. After that, the group-level analysis can be run on the subjects who have successfully completed FSQC.
+Setting group_only = true, will skip individual-level processing and run only the group-level analysis.
+
+
+
 3) python3 -m ./qc/qc_complete.py
 
 This script will recompute the group statistics of aparc and aseg segmentations after normalization of volumes by ETIV.
