@@ -66,7 +66,9 @@ The number of outliers is updated and all QC statistics are merged and saved in 
 
 If you want to run qc_complete.py in a batch mode, you can use qc_complete.slurm
 
-WARNING : .pial.T1 and .pial.T2 are symboloc links and may disapear when data is transfered from a user to another. In this case, recreate the symbolic links 
+WARNING : .pial.T1 and .pial.T2 are symbolic links and may disapear when data is transfered from a user to another. In this case, recreate the symbolic links 
+
+FOR INSTANCE : 
 
 for subj in *; do
   if [ -d "$subj/surf" ]; then
